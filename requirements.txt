@@ -7,6 +7,9 @@ transformers           # GPT-Neo & HuggingFace pipelines
 torch                  # backend for transformers
 spacy                   # NER for tag extraction
 
+# search tool
+duckduckgo_search
+
 # Optional Image Generation
 diffusers
 accelerate            # for running diffusers efficiently
@@ -14,7 +17,7 @@ torchvision            # for image processing
 
 # Optional Web UI
 streamlit              # for simple front-end / human-in-the-loop interaction
-
+flask 
 # Evaluation / Metrics
 nltk                    # BLEU / ROUGE calculations
 scikit-learn                   # Precision, Recall metrics
