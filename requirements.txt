@@ -17,7 +17,7 @@ torchvision            # for image processing
 
 # Optional Web UI
 streamlit              # for simple front-end / human-in-the-loop interaction
-flask 
+
 # Evaluation / Metrics
 nltk                    # BLEU / ROUGE calculations
 scikit-learn                   # Precision, Recall metrics
