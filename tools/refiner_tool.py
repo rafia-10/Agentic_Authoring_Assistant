@@ -52,19 +52,29 @@ class RefinerTool:
         return list(set(clean_tags))[:10]
 
     # ----------------- References -----------------
+    
     def refine_references(self, references):
-        """Ensure consistent reference style."""
-        formatted = []
-        seen = set()
+      """Ensure consistent reference style."""
+      formatted = []
+      seen = set()
 
-        for ref in references:
-            if ref in seen:
-                continue
-            seen.add(ref)
-            ref = re.sub(r"\s+", " ", ref.strip())
-            formatted.append(ref)
+      for ref in references:
+          
+          if isinstance(ref, dict):
+              ref_str = f"{ref.get('title', 'Untitled')} - {ref.get('url', '')}"
+          else:
+              ref_str = str(ref).strip()
 
-        return formatted
+          # Deduplicate
+          if ref_str in seen:
+              continue
+          seen.add(ref_str)
+
+          # Clean whitespace
+          ref_str = re.sub(r"\s+", " ", ref_str)
+          formatted.append(ref_str)
+
+      return formatted
 
     # ----------------- LLM Wrapper -----------------
     def llm_refine(self, prompt):
