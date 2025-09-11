@@ -32,7 +32,7 @@ def main():
     references = reference_agent.find_references(description)
 
     # 5️⃣ Generate image
-    images = image_agent.generate_image(metadata["summary"], metadata["tags"])
+    images = image_agent.generate_image(description)
 
     # 6️⃣ Combine all raw outputs
     raw_outputs = {
