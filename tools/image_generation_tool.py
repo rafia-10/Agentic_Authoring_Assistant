@@ -11,7 +11,7 @@ from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 
 
 
-MODEL_ID = os.getenv("SD_MODEL_ID", "sd-legacy/stable-diffusion-v1-5")
+MODEL_ID = os.getenv("SD_MODEL_ID", "stabilityai/stable-diffusion-2-1")
 
 # Device config
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
