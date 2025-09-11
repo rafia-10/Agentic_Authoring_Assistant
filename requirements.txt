@@ -25,6 +25,5 @@ nltk                    # BLEU / ROUGE calculations
 scikit-learn                   # Precision, Recall metrics
 
 # Orchestration (Optional)
-pydantic                # for structured messaging between agents
-fastapi                # if we want to expose API endpoints
-uvicorn                # for running FastAPI server
+langgraph
+langchain
