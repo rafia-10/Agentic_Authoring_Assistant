@@ -9,6 +9,8 @@ spacy                   # NER for tag extraction
 
 # search tool
 duckduckgo_search
+arxiv 
+
 
 # Optional Image Generation
 diffusers
