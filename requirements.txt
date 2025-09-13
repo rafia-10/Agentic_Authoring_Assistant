@@ -8,7 +8,7 @@ torch                  # backend for transformers
 spacy                   # NER for tag extraction
 
 # search tool
-duckduckgo_search
+tavily
 arxiv 
 
 
