@@ -1,0 +1,27 @@
+rules:
+  - name: enforce_json_format
+    type: output_validation
+    schema:
+      type: object
+      properties:
+        title:
+          type: string
+        summary:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required: ["title", "summary", "tags"]
+
+  - name: block_sensitive_data
+    type: content_filter
+    block_keywords: ["password", "api_key", "secret", "internal"]
+
+  - name: prevent_prompt_injection
+    type: input_sanitization
+    patterns: ["ignore previous instructions", "override rules", "do anything now"]
+
+  - name: toxicity_filter
+    type: content_filter
+    block_keywords: ["hate", "kill", "violence"]
