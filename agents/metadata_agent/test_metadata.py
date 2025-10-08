@@ -1,10 +1,10 @@
-from metadata_agent import generate_metadata
+from .metadata_agent import MetadataAgent 
 
 if __name__ == "__main__":
     print("🧠 Agentic Authoring Assistant (A3)")
     description = input("\n👉 Enter your project description:\n> ")
-
-    metadata = generate_metadata(description)
+    agent = MetadataAgent()
+    metadata = agent.generate_metadata(description)
 
     print("\n🎯 Generated Metadata:")
     print(f"\n📘 Titles: {', '.join(metadata['titles'])}")
