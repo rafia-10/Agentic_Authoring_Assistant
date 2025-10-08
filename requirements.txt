@@ -1,28 +1,23 @@
 # Core
-python-dotenv==1.0.1          #
-requests==2.31.0               
+python-dotenv==1.0.1
+requests==2.31.0
 
 # LLM / NLP
-transformers           # GPT-Neo & HuggingFace pipelines
-torch                  # backend for transformers
-spacy                   # NER for tag extraction
+transformers        # GPT-Neo & HuggingFace pipelines
+torch               # backend for transformers
+spacy               # NER / keyword extraction
+pydantic            # for structured data validation
 
-# search tool
-duckduckgo_search
+#  Image Generation
+diffusers          # only if image generator agent implemented
+accelerate          # for running diffusers efficiently
+torchvision         # for image preprocessing
 
-# Optional Image Generation
-diffusers
-accelerate            # for running diffusers efficiently
-torchvision            # for image processing
+# Deployment / Front-end
+fastapi             # for API endpoints
+uvicorn             # to run FastAPI
+# streamlit         # optional if you want simple UI
 
-# Optional Web UI
-streamlit              # for simple front-end / human-in-the-loop interaction
-
-# Evaluation / Metrics
-nltk                    # BLEU / ROUGE calculations
-scikit-learn                   # Precision, Recall metrics
-
-# Orchestration (Optional)
-pydantic                # for structured messaging between agents
-fastapi                # if we want to expose API endpoints
-uvicorn                # for running FastAPI server
+# Evaluation / Metrics (optional)
+nltk                # BLEU / ROUGE if needed for refiners
+scikit-learn        # Precision/Recall metrics for evaluation
