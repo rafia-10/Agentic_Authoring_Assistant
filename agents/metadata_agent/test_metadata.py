@@ -1,6 +1,6 @@
 # test_metadata_agent.py
 import os
-from metadata_agent_langgraph import generate_metadata
+from .metadata_agent_langgraph import generate_metadata
 
 if __name__ == "__main__":
     print("🧠 Agentic Authoring Assistant (3A)")
