@@ -1,4 +1,4 @@
-from langgraph import Node, Graph
+from langgraph import graph
 from .title_agent import TitleAgent
 from .summary_agent import SummaryAgent
 from .tag_agent import TagAgent
@@ -14,6 +14,7 @@ class Metadata(BaseModel):
     summary: str
     tags: List[str]
 
+
 # Initialize tools
 api_key = os.getenv("OPENROUTER_API_KEY")
 nlp_tool = NLPTool(api_key=api_key)
@@ -24,40 +25,37 @@ title_agent = TitleAgent(nlp_tool, refiner)
 summary_agent = SummaryAgent(nlp_tool, refiner)
 tag_agent = TagAgent(nlp_tool, refiner)
 
-# LangGraph nodes
-class TitleNode(Node):
-    def run(self, description: str):
-        return title_agent.generate_titles(description)
+# Modern LangGraph function-based graph
+@graph
+def metadata_graph(state: Dict) -> Dict:
+    state["titles"] = title_agent.generate_titles(state["description"])
+    state["summary"] = summary_agent.generate_summary(state["description"])
+    state["tags"] = tag_agent.extract_tags(state["description"], state["summary"])
 
-class SummaryNode(Node):
-    def run(self, description: str):
-        return summary_agent.generate_summary(description)
+    try:
+        metadata = Metadata(
+            titles=state["titles"],
+            summary=state["summary"],
+            tags=state["tags"]
+        )
+        state["metadata"] = metadata.dict()
+    except Exception as e:
+        state["metadata"] = {
+            "titles": state["titles"],
+            "summary": state["summary"],
+            "tags": state["tags"],
+            "validation_error": str(e)
+        }
 
-class TagNode(Node):
-    def run(self, description: str, summary: str):
-        return tag_agent.extract_tags(description, summary)
+    return state
 
-class MetadataAggregatorNode(Node):
-    def run(self, titles, summary, tags):
-        try:
-            metadata = Metadata(titles=titles, summary=summary, tags=tags)
-            return metadata.dict()
-        except Exception as e:
-            return {"titles": titles, "summary": summary, "tags": tags, "validation_error": str(e)}
-
-# Build Graph
-graph = Graph()
-title_node = TitleNode()
-summary_node = SummaryNode()
-tag_node = TagNode()
-aggregator_node = MetadataAggregatorNode()
-
-graph.add_nodes([title_node, summary_node, tag_node, aggregator_node])
-graph.connect(title_node, aggregator_node)
-graph.connect(summary_node, aggregator_node)
-graph.connect(tag_node, aggregator_node)
-
-# Entry point
+# Entry point function
 def generate_metadata(description: str) -> Dict:
-    outputs = graph.run({"description": description})
-    return outputs.get(aggregator_node, {})
+    initial_state = {
+        "description": description,
+        "titles": [],
+        "summary": "",
+        "tags": []
+    }
+    final_state = metadata_graph(initial_state)
+    return final_state.get("metadata", {})
