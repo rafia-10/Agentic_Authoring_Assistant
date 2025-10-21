@@ -1,5 +1,5 @@
 # agents/refiner_agent/test_metadata_refiner.py
-from .metadata_refiner_langgraph import generate_refined_metadata
+from .refiner_agent_langgraph import generate_refined_metadata
 
 if __name__ == "__main__":
     print("🧠 Testing Metadata Refiner Agent (Refiner + Metadata)")
