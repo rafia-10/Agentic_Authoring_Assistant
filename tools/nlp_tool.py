@@ -1,7 +1,8 @@
 # tools/nlp_tool.py
 from typing import List
-import re
-from openrouter import OpenRouter
+import re   
+from llama_index.llms.openrouter import OpenRouter
+
 
 class NLPTool:
     def __init__(self, api_key: str):
