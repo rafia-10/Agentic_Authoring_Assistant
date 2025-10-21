@@ -1,23 +1,28 @@
-# Core
+# Core / Utilities
 python-dotenv==1.0.1
 requests==2.31.0
+pydantic
 
 # LLM / NLP
-transformers        # GPT-Neo & HuggingFace pipelines
-torch               # backend for transformers
-spacy               # NER / keyword extraction
-pydantic            # for structured data validation
+llama_index.llms.openrouter
 
-#  Image Generation
-diffusers          # only if image generator agent implemented
-accelerate          # for running diffusers efficiently
-torchvision         # for image preprocessing
+
+#  Image Generation (Nano-banana)
+google-genai 
+Pillow
+
+# Orchestration
+langgraph       # for agent orchestration
+
+
 
 # Deployment / Front-end
 fastapi             # for API endpoints
 uvicorn             # to run FastAPI
-# streamlit         # optional if you want simple UI
+
 
 # Evaluation / Metrics (optional)
 nltk                # BLEU / ROUGE if needed for refiners
 scikit-learn        # Precision/Recall metrics for evaluation
+
+
