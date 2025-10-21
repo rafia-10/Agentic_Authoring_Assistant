@@ -1,7 +1,7 @@
 from langgraph import Node, Graph
-from agents.title_agent import TitleAgent
-from agents.summary_agent import SummaryAgent
-from agents.tag_agent import TagAgent
+from .title_agent import TitleAgent
+from .summary_agent import SummaryAgent
+from .tag_agent import TagAgent
 from tools.nlp_tool import NLPTool
 from tools.refiner_tool import RefinerTool
 from pydantic import BaseModel
