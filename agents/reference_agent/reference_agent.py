@@ -1,14 +1,21 @@
-# inside reference_agent.py
 from tools.web_search_tool import WebSearchTool
+from typing import List, Dict
 
 class ReferenceAgent:
-    def __init__(self):
-        self.web_tool = WebSearchTool()
+    def __init__(self, web_search_tool: WebSearchTool):
+        self.web_search_tool = web_search_tool
 
-    def fetch_references(self, description: str, min_results=3):
-        arxiv_refs = self.query_arxiv(description)
-
-        if len(arxiv_refs) < min_results:
-            web_refs = self.web_tool.search(description, max_results=5)
-            return arxiv_refs + web_refs
-        return arxiv_refs
+    def fetch_references(self, topic: str, max_results: int = 5) -> List[Dict]:
+        """Search the web and return ranked, summarized references."""
+        print(f"🔎 Searching references for: {topic}")
+        results = self.web_search_tool.search_and_rank(topic, max_results)
+        references = [
+            {
+                "title": r.get("title"),
+                "url": r.get("url"),
+                "summary": r.get("summary"),
+                "score": r.get("score", 0)
+            }
+            for r in results
+        ]
+        return references
