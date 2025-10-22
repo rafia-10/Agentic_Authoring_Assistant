@@ -21,9 +21,9 @@ api_key = os.getenv("OPENROUTER_API_KEY")
 nlp_tool = NLPTool(api_key=api_key)
 refiner = RefinerTool()
 
-title_agent = TitleAgent(nlp_tool, refiner)
-summary_agent = SummaryAgent(nlp_tool, refiner)
-tag_agent = TagAgent(nlp_tool, refiner)
+title_agent = TitleAgent(nlp_tool)
+summary_agent = SummaryAgent(nlp_tool)
+tag_agent = TagAgent(nlp_tool)
 
 
 # Define node functions
@@ -49,7 +49,7 @@ def aggregator_node(state: Dict):
             summary=state["summary"],
             tags=state["tags"]
         )
-        state["metadata"] = metadata.dict()
+        state["metadata"] = metadata.model_dump()
     except Exception as e:
         state["metadata"] = {
             "titles": state.get("titles", []),
