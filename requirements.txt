@@ -6,17 +6,11 @@ pydantic
 # LLM / NLP
 llama_index.llms.openrouter
 
-
-#  Image Generation (Nano-banana)
-google-genai 
-Pillow
-
 # web search tools
 tavily-python
 
 # Orchestration
 langgraph       # for agent orchestration
-
 
 
 # Deployment / Front-end
