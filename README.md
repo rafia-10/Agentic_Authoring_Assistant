@@ -77,19 +77,20 @@ The system was designed following the “Agentic AI” pattern: a collection of 
 
 The main entry point (main.py) orchestrates the metadata → refinement → reference pipeline.
 
-        `python main.py`
+        python main.py
 
 
 ### Sample Interaction:
-    Enter your project description:
+Enter your project description:
+
     "Agentic AI systems are transforming the way freelancers automate content workflows."
 
-    🪄 Generating Metadata...
-    🧹 Refining Metadata...
-    🔍 Fetching References...
-    ✅ Completed: titles, summaries, tags, and web references generated successfully!
-    
-    All agents communicate through a shared LangGraph state that ensures deterministic flow and reproducibility.
+🪄 Generating Metadata...
+🧹 Refining Metadata...
+🔍 Fetching References...
+✅ Completed: titles, summaries, tags, and web references generated successfully!
+
+All agents communicate through a shared LangGraph state that ensures deterministic flow and reproducibility.
 
 
 ## 🧩 Roles and Communication Flow
@@ -126,6 +127,9 @@ See the LICENSE
 ## 👩‍💻 Author
 
 Developed by: Rafia Kedir — Agentic AI Developer & Automation expert
+
+
+
 Contact: rafiakedir22@gmail.com
  
 
