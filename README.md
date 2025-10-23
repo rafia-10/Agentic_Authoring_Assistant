@@ -64,11 +64,11 @@ The system was designed following the “Agentic AI” pattern: a collection of 
 
 ### 3. Install Dependencies
 
-    `pip install -r requirements.txt`
+     pip install -r requirements.txt
 
 ### 4. Set Up Environment Variables
 
-    Create a .env file or export directly in your shell:
+Create a .env file or export directly in your shell:
         export OPENAI_API_KEY="your_openai_api_key"
         export TAVILY_API_KEY="your_tavily_api_key"
 
@@ -115,8 +115,8 @@ Each agent can be tested individually using its corresponding test script.
 
 ## 🧰 Future Enhancements
 
-     Add ImageGenerationAgent (once NanoBanana API is public)
-    Integrate vector-based memory (via Qdrant or FAISS)
+Add ImageGenerationAgent (once NanoBanana API is public)
+Integrate vector-based memory (via Qdrant or FAISS)
 
 🪪 License
 
