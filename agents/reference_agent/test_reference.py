@@ -18,5 +18,5 @@ if __name__ == "__main__":
     for ref in references:
         print(f"- {ref['title']}")
         print(f"  Link: {ref.get('url')}")
-        print(f"  Summary: {ref.get('summary')}")
+        
 

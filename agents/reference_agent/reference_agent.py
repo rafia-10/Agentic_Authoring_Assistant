@@ -13,8 +13,7 @@ class ReferenceAgent:
             {
                 "title": r.get("title"),
                 "url": r.get("url"),
-                "summary": r.get("summary"),
-                "score": r.get("score", 0)
+  
             }
             for r in results
         ]
