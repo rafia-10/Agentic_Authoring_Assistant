@@ -22,35 +22,35 @@ The system was designed following the “Agentic AI” pattern: a collection of 
 ⚙️ LangGraph Orchestration – Manages communication and state transitions between agents.
 
 ## 📁 Project Structure
-Agentic_Authoring_Assistant/
-│
-├── agents/
-│   ├── metadata_agent/
-│   │   ├── metadata_agent_langgraph.py      # Metadata graph and generation pipeline
-    |   ├──summary_agent.py
-    |   ├──tag_agent.py
-    |   ├──title_agent.py                 
-│   │   └── test_metadata.py                 # Test file for metadata generation
-│   │
-│   ├── refiner_agent/
-│   │   ├── refiner_agent_langgraph.py       # Refines metadata (titles, summary, tags)
-│   │   └── test_refiner.py                  # Unit test for refinement
-│   │
-│   ├── reference_agent/
-│       ├── reference_agent.py               # Web reference fetching via Tavily API
-│       └── test_reference.py                # Testing script for references
-│   
-│  
-│
-├── tools/
-│   ├── nlp_tool.py                     # Metadata extraction logic
-│   ├── refiner_tool.py                      # Metadata refinement logic
-│   ├── web_search_tool.py                   # Tavily-based web search tool
-│   └── __init__.py
-│
-├── main.py                                  # LangGraph orchestration (entry point)
-├── requirements.txt                         # Dependencies
-└── README.md                                # This file
+    Agentic_Authoring_Assistant/
+    │
+    ├── agents/
+    │   ├── metadata_agent/
+    │   │   ├── metadata_agent_langgraph.py      # Metadata graph and generation pipeline
+        |   ├──summary_agent.py
+        |   ├──tag_agent.py
+        |   ├──title_agent.py                 
+    │   │   └── test_metadata.py                 # Test file for metadata generation
+    │   │
+    │   ├── refiner_agent/
+    │   │   ├── refiner_agent_langgraph.py       # Refines metadata (titles, summary, tags)
+    │   │   └── test_refiner.py                  # Unit test for refinement
+    │   │
+    │   ├── reference_agent/
+    │       ├── reference_agent.py               # Web reference fetching via Tavily API
+    │       └── test_reference.py                # Testing script for references
+    │   
+    │  
+    │
+    ├── tools/
+    │   ├── nlp_tool.py                     # Metadata extraction logic
+    │   ├── refiner_tool.py                      # Metadata refinement logic
+    │   ├── web_search_tool.py                   # Tavily-based web search tool
+    │   
+    │
+    ├── main.py                                  # LangGraph orchestration (entry point)
+    ├── requirements.txt                         # Dependencies
+    └── README.md                                # This file
 
 ## ⚙️ Setup Instructions
 ### 1. Clone the Repository
@@ -75,7 +75,7 @@ Agentic_Authoring_Assistant/
 ## 🚀 Usage
 🧠 Run the Full Multi-Agent Orchestration
 
-    The main entry point (main.py) orchestrates the metadata → refinement → reference pipeline.
+The main entry point (main.py) orchestrates the metadata → refinement → reference pipeline.
 
         `python main.py`
 
