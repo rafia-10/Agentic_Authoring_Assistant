@@ -11,6 +11,9 @@ llama_index.llms.openrouter
 google-genai 
 Pillow
 
+# web search tools
+tavily-python
+
 # Orchestration
 langgraph       # for agent orchestration
 
