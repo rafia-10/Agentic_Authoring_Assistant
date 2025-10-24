@@ -22,4 +22,6 @@ uvicorn             # to run FastAPI
 nltk                # BLEU / ROUGE if needed for refiners
 scikit-learn        # Precision/Recall metrics for evaluation
 
+## Safety 
+guardrails-ai
 
