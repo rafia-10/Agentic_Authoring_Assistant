@@ -1,4 +1,5 @@
 # main.py
+from tools.guardrails_validation import  validate_content_safety, validate_prompt_injection
 from langgraph.graph import StateGraph
 from agents.metadata_agent.metadata_agent_langgraph import generate_metadata
 from agents.refiner_agent.refiner_agent_langgraph import build_refiner_graph
@@ -46,8 +47,37 @@ def build_main_graph():
 # ------------------ Entry point ------------------
 def run_all_agents(description: str):
     main_graph = build_main_graph()
-    initial_state = {"description": description}
+    
+    # 1️⃣ Input validation before sending to agents
+    try:
+        validated_description = validate_prompt_injection(description)
+    except ValueError as e:
+        print(f"🚫 Input Validation Error: {e}")
+        return None
+
+    initial_state = {"description": validated_description}
     final_state = main_graph.invoke(initial_state)
+
+    # 2️⃣ Output validation for generated text
+    try:
+        # Validate all titles
+        final_state["metadata"]["titles"] = [
+            validate_content_safety(title)
+            for title in final_state["metadata"]["titles"]
+        ]
+        # Validate summary
+        final_state["metadata"]["summary"] = validate_content_safety(
+            final_state["metadata"]["summary"]
+        )
+        # Validate tags
+        final_state["metadata"]["tags"] = [
+            validate_content_safety(tag)
+            for tag in final_state["metadata"]["tags"]
+        ]
+    except ValueError as e:
+        print(f"🚫 Output Validation Error: {e}")
+        return None
+
     return final_state
 
 # ------------------ Run script ------------------
