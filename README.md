@@ -19,6 +19,8 @@ The system was designed following the “Agentic AI” pattern: a collection of 
 
 🔍 Reference Agent – Retrieves real-world supporting references using Tavily Search API.
 
+⚙️ Guardrails validation - validate content safety and detect propmt injection
+
 ⚙️ LangGraph Orchestration – Manages communication and state transitions between agents.
 
 ## 📁 Project Structure
@@ -46,7 +48,7 @@ The system was designed following the “Agentic AI” pattern: a collection of 
     │   ├── nlp_tool.py                     # Metadata extraction logic
     │   ├── refiner_tool.py                      # Metadata refinement logic
     │   ├── web_search_tool.py                   # Tavily-based web search tool
-    │   
+    │   ├──guardrails_validation.py
     │
     ├── main.py                                  # LangGraph orchestration (entry point)
     ├── requirements.txt                         # Dependencies
