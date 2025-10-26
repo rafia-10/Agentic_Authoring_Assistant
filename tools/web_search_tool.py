@@ -1,4 +1,4 @@
-import os, json, requests
+import os
 from tavily import TavilyClient
 
 class WebSearchTool:
