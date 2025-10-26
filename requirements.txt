@@ -12,11 +12,14 @@ tavily-python
 # Orchestration
 langgraph       # for agent orchestration
 
+#Test
+pytest
+pytest-cov
 
 # Deployment / Front-end
 fastapi             # for API endpoints
 uvicorn             # to run FastAPI
-
+python-multipart  # for form data handling
 
 # Evaluation / Metrics (optional)
 nltk                # BLEU / ROUGE if needed for refiners
