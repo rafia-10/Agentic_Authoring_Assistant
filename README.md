@@ -25,13 +25,14 @@ The system was designed following the “Agentic AI” pattern: a collection of 
 
 ## 📁 Project Structure
     Agentic_Authoring_Assistant/
+    
     │
     ├── agents/
     │   ├── metadata_agent/
     │   │   ├── metadata_agent_langgraph.py      # Metadata graph and generation pipeline
-        |   ├──summary_agent.py
-        |   ├──tag_agent.py
-        |   ├──title_agent.py                 
+    │   |   ├──summary_agent.py
+    │   |   ├──tag_agent.py
+    │   |   ├──title_agent.py                 
     │   │   └── test_metadata.py                 # Test file for metadata generation
     │   │
     │   ├── refiner_agent/
@@ -41,8 +42,20 @@ The system was designed following the “Agentic AI” pattern: a collection of 
     │   ├── reference_agent/
     │       ├── reference_agent.py               # Web reference fetching via Tavily API
     │       └── test_reference.py                # Testing script for references
-    │   
+    │
+    ├──api/
+    │  ├──static
+    │     └── style.css   
+    │  ├──templates
+    │     └── index.html
+    │    
     │  
+    ├── tests/
+    │   ├── test_api.py                     
+    │   ├── test_integration.py                     
+    │   ├── test_metadata_agent.py                   
+    │   ├── test_reference_agent.py
+    │   ├──test_refiner_agent.py
     │
     ├── tools/
     │   ├── nlp_tool.py                     # Metadata extraction logic
