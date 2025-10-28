@@ -45,9 +45,10 @@ The system was designed following the “Agentic AI” pattern: a collection of 
     │
     ├──api/
     │  ├──static
-    │     └── style.css   
+    │  │  └── style.css   
     │  ├──templates
-    │     └── index.html
+    │  │   └── index.html
+    │  ├──app.py 
     │    
     │  
     ├── tests/
