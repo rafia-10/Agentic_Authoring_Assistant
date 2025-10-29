@@ -88,5 +88,8 @@ def generate_metadata(description: str) -> Dict:
         "tags": []
     }
     final_state = app.invoke(initial_state)
+    print("🧠 FINAL STATE AFTER METADATA GRAPH:")
+    print(final_state)  
+
     return final_state.get("metadata", {})
 
