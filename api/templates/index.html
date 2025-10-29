@@ -121,12 +121,20 @@
     <div class="results">
       <h2>Results</h2>
 
+      
       <!-- Titles -->
       <div class="section">
         <h3>📝 Titles</h3>
         <ul>
           {% for title in result.metadata.titles %}
-            <li>{{ title }}</li>
+            {% set parts = title.split(':', 1) %}
+            <li>
+              {% if parts|length > 1 %}
+                <strong>{{ parts[0].strip().title() }}</strong>: {{ parts[1].strip() }}
+              {% else %}
+                <strong>{{ title.strip().title() }}</strong>
+              {% endif %}
+            </li>
           {% endfor %}
         </ul>
       </div>
