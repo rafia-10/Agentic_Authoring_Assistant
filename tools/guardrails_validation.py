@@ -1,51 +1,9 @@
-# from guardrails import Guard
-# from guardrails.validators import ToxicLanguage
-# from guardrails.hub import UnusualPrompt
-
-# # Initialize Guard for content safety
-# content_safety_guard = Guard().use(
-#     ToxicLanguage(threshold=0.5, on_fail="reject")
-# )
-
-# def validate_content_safety(output_text: str):
-#     """
-#     Checks generated text for toxic or profane content.
-#     Raises ValueError if validation fails.
-#     """
-#     result = content_safety_guard.validate(output_text)
-#     if result.validation_passed:
-#         return result.validated_output
-#     else:
-#         raise ValueError("⚠️ Generated text failed content safety check.")
-
-
-    
-# prompt_injection_guard = Guard().use(
-#     UnusualPrompt(on_fail="reject")
-# )
-
-# def validate_prompt_injection(document_text: str):
-#     """
-#     Blocks suspicious prompt-injection content dynamically using Guardrails' UnusualPrompt.
-#     Raises ValueError if validation fails.
-#     """
-#     result = prompt_injection_guard.validate(document_text)
-#     if result.validation_passed:
-#         return result.validated_output
-#     else:
-#         raise ValueError(
-#             "Sorry, this request contains language that may trigger safety filters. "
-#             "Please try rephrasing or simplifying it."
-#         )
-    
-# # tools/guardrails_validation.py
-
-
+# tools/guardrails_validation.py
 
 class ToxicLanguage:
     """Mock replacement for Guardrails toxic language detector."""
     def __call__(self, value: str):
-        bad_words = ["hate", "kill", "stupid", "idiot"]
+        bad_words = ["hate", "stupid", "idiot"]
         if any(bad in value.lower() for bad in bad_words):
             return {"valid": False, "error": "Toxic language detected."}
         return {"valid": True}
@@ -57,12 +15,30 @@ class UnusualPrompt:
             return {"valid": False, "error": "Prompt injection attempt detected."}
         return {"valid": True}
 
-def validate_content_safety(text):
-    
+
+def validate_content_safety(text: str) -> str:
+    """
+    Validate generated text for toxic content.
+    Returns original string if safe, raises ValueError if unsafe.
+    """
     validator = ToxicLanguage()
-    return validator(text)["valid"]
+    result = validator(text)
+    if result["valid"]:
+        return text  # keep original string
+    else:
+        raise ValueError(f"⚠️ Generated text failed content safety check: {text}")
 
-def validate_prompt_injection(prompt):
 
+def validate_prompt_injection(prompt: str) -> str:
+    """
+    Validate input text to block suspicious prompt injections.
+    Returns original string if safe, raises ValueError if unsafe.
+    """
     validator = UnusualPrompt()
-    return validator(prompt)["valid"]
+    result = validator(prompt)
+    if result["valid"]:
+        return prompt  # keep original string
+    else:
+        raise ValueError(
+            "⚠️ Prompt injection detected. Please rephrase your input."
+        )
