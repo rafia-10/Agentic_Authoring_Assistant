@@ -17,9 +17,9 @@
         {% if result %}
         <div class="results">
             <h2>Results</h2>
-            <p><strong>Title:</strong> {{ result.title }}</p>
-            <p><strong>Tags:</strong> {{ result.tags | join(', ') }}</p>
-            <p><strong>Summary:</strong> {{ result.summary }}</p>
+            <p><strong>Titles:</strong> {{ result.metadata.titles | join(', ') }}</p>
+            <p><strong>Tags:</strong> {{ result.metadata.tags | join(', ') }}</p>
+            <p><strong>Summary:</strong> {{ result.metadata.summary }}</p>
             <p><strong>References:</strong> {{ result.references | join('<br>') | safe }}</p>
         </div>
         {% endif %}
