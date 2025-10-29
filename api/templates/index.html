@@ -1,28 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Agentic Authoring Assistant</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Agentic Authoring Assistant</h1>
-        <form method="post" action="/generate">
-            <textarea name="text" rows="6" placeholder="Paste your publication here..."></textarea>
-            <br>
-            <button type="submit">Generate Metadata</button>
-        </form>
+  <meta charset="UTF-8">
+  <title>Agentic Authoring Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+    }
 
-        {% if result %}
-        <div class="results">
-            <h2>Results</h2>
-            <p><strong>Titles:</strong> {{ result.metadata.titles | join(', ') }}</p>
-            <p><strong>Tags:</strong> {{ result.metadata.tags | join(', ') }}</p>
-            <p><strong>Summary:</strong> {{ result.metadata.summary }}</p>
-            <p><strong>References:</strong> {{ result.references | join('<br>') | safe }}</p>
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: #ffffff;
+      padding: 2em 3em;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f172a;
+      margin-bottom: 1em;
+    }
+
+    form textarea {
+      width: 100%;
+      padding: 1em;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 1em;
+      resize: vertical;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    form textarea:focus {
+      border-color: #3b82f6;
+    }
+
+    form button {
+      margin-top: 1em;
+      width: 100%;
+      padding: 0.9em;
+      background: #3b82f6;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      font-size: 1.05em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    form button:hover {
+      background: #2563eb;
+    }
+
+    .results {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .section {
+      margin-bottom: 1.5em;
+    }
+
+    .section h3 {
+      margin-bottom: 0.5em;
+      color: #111827;
+      font-size: 1.1em;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5em;
+      margin: 0.5em 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+    }
+
+    .tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.3em 0.7em;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Agentic Authoring Assistant</h1>
+
+    <form method="post" action="/generate">
+      <textarea name="text" rows="6" placeholder="Paste your publication or project description here..."></textarea>
+      <br>
+      <button type="submit">Generate Metadata</button>
+    </form>
+
+    {% if result %}
+    <div class="results">
+      <h2>Results</h2>
+
+      <!-- Titles -->
+      <div class="section">
+        <h3>📝 Titles</h3>
+        <ul>
+          {% for title in result.metadata.titles %}
+            <li>{{ title }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Summary -->
+      <div class="section">
+        <h3>📄 Summary</h3>
+        <p>{{ result.metadata.summary }}</p>
+      </div>
+
+      <!-- Tags -->
+      <div class="section">
+        <h3>🏷️ Tags</h3>
+        <div class="tags">
+          {% for tag in result.metadata.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
         </div>
-        {% endif %}
+      </div>
+
+      <!-- References -->
+      <div class="section">
+        <h3>🔗 References</h3>
+        <ul>
+          {% for ref in result.references %}
+            <li>
+              <a href="{{ ref.url }}" target="_blank">{{ ref.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
+    {% endif %}
+  </div>
 </body>
 </html>
